@@ -37,7 +37,7 @@ export class AuthLogic {
       },
       process.env.JWT_SECRET, // chave secreta.
       {
-        expiresIn: '365d',
+        expiresIn: '5m',
         algorithm: 'HS256',
       }
     );
