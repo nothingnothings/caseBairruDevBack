@@ -1,8 +1,7 @@
+import 'dotenv/config'; // Import dotenv to load the .env file (needed for migration running)
 import path = require('path');
 import 'reflect-metadata';
 import { DataSource } from 'typeorm';
-
-console.log(process.env.DB_HOST, 'THE_DB_HOST');
 
 export const AppDataSource = new DataSource({
   type: process.env.DB_TYPE as any,
