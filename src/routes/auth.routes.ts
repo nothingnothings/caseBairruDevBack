@@ -18,4 +18,10 @@ export const configure = (fastify: FastifyInstance) => {
     handler: authController.login,
     schema: LoginSchema,
   });
+
+  fastify.route({
+    url: '/auth/delete',
+    method: 'DELETE',
+    handler: authController.deleteUser,
+  });
 };

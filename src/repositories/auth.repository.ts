@@ -30,4 +30,14 @@ export class AuthTypeOrmRepository implements AuthRepository {
       throw new Error('Error finding user');
     }
   }
+
+  async deleteUser(userId: number): Promise<User> {
+    try {
+      const user = await this.userRepository.findOne({ where: { id: userId } });
+      await this.userRepository.softDelete(user);
+      return user;
+    } catch (error) {
+      throw new Error('Error deleting user');
+    }
+  }
 }

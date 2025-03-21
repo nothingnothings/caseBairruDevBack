@@ -1,3 +1,4 @@
+import { User } from '../database/typeorm/entity/User';
 import { AuthLoginRequest } from '../interfaces/authLoginRequest';
 import { AuthResponse } from '../interfaces/authResponse';
 import { AuthTypeOrmRepository } from '../repositories/auth.repository';
@@ -82,6 +83,14 @@ export class AuthLogic {
     return {
       user,
       token,
+    };
+  }
+
+  async deleteUser(userId: number): Promise<{ user: User }> {
+    const user = await this.authRepository.deleteUser(userId);
+
+    return {
+      user,
     };
   }
 }

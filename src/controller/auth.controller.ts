@@ -2,6 +2,7 @@ import { FastifyReply, FastifyRequest } from 'fastify';
 import { AuthLogic } from '../logic/auth.logic';
 import { CreateUserParams } from '../repositories/interfaces/AuthRepository.interface';
 import { AuthLoginRequest } from '../interfaces/authLoginRequest';
+import { AuthDeleteRequest } from '../interfaces/authDeleteRequest';
 
 export class AuthController {
   private authLogic: AuthLogic;
@@ -24,6 +25,16 @@ export class AuthController {
     const userData = request.body as AuthLoginRequest;
 
     const user = await this.authLogic.login(userData);
+
+    reply.send(user);
+  };
+
+  deleteUser = async (request: FastifyRequest, reply: FastifyReply) => {
+    const userData = request.body as AuthDeleteRequest;
+
+    const userId = userData.userId;
+
+    const user = await this.authLogic.deleteUser(userId);
 
     reply.send(user);
   };

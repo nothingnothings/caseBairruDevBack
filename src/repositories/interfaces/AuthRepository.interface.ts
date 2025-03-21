@@ -10,4 +10,6 @@ export interface AuthRepository {
   createUser(user: CreateUserParams): Promise<User>;
 
   findByEmail(email: string): Promise<User>;
+
+  deleteUser(userId: number): Promise<User>;
 }
