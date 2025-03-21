@@ -3,6 +3,7 @@ import { AuthLogic } from '../logic/auth.logic';
 import { CreateUserParams } from '../repositories/interfaces/AuthRepository.interface';
 import { AuthLoginRequest } from '../interfaces/authLoginRequest';
 import { AuthDeleteRequest } from '../interfaces/authDeleteRequest';
+import { AuthAlterNameRequest } from '../interfaces/authAlterNameRequest';
 
 export class AuthController {
   private authLogic: AuthLogic;
@@ -34,9 +35,18 @@ export class AuthController {
 
     const userId = userData.userId;
 
-    console.log(userId);
-
     const user = await this.authLogic.deleteUser(userId);
+
+    reply.send(user);
+  };
+
+  alterName = async (request: FastifyRequest, reply: FastifyReply) => {
+    const userData = request.body as AuthAlterNameRequest;
+
+    const userId = userData.userId;
+    const newName = userData.newName;
+
+    const user = await this.authLogic.alterName(userId, newName);
 
     reply.send(user);
   };

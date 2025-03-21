@@ -86,6 +86,13 @@ export class AuthLogic {
     };
   }
 
+  async alterName(userId: number, newName: string): Promise<User> {
+    const user = await this.authRepository.alterName(userId, newName);
+
+    return user;
+  }
+
+  // Soft Delete Method
   async deleteUser(
     userId: number
   ): Promise<{ message: string; userId: number }> {

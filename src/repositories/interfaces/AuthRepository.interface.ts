@@ -11,5 +11,7 @@ export interface AuthRepository {
 
   findByEmail(email: string): Promise<User>;
 
+  alterName(userId: number, newName: string): Promise<User>;
+
   deleteUser(userId: number): Promise<{ message: string; userId: number }>;
 }

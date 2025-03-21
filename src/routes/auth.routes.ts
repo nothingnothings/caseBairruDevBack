@@ -1,6 +1,6 @@
 import { FastifyInstance } from 'fastify';
 import { AuthController } from '../controller/auth.controller';
-import { LoginSchema, RegisterSchema } from './schemas/auth.schema';
+import { AlterNameSchema, LoginSchema, RegisterSchema } from './schemas/auth.schema';
 
 export const configure = (fastify: FastifyInstance) => {
   const authController = new AuthController();
@@ -23,5 +23,12 @@ export const configure = (fastify: FastifyInstance) => {
     url: '/auth/delete',
     method: 'DELETE',
     handler: authController.deleteUser,
+  });
+
+  fastify.route({
+    url: '/auth/alterName',
+    method: 'PUT',
+    handler: authController.alterName,
+    schema: AlterNameSchema,
   });
 };
