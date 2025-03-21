@@ -3,8 +3,6 @@ import fastify from 'fastify';
 import { AppDataSource } from '../src/database/typeorm/data-source';
 import * as Routes from './routes';
 
-console.log('Loaded environment variables:', process.env); // Check all env variables
-
 (async () => {
   const app = fastify();
 
