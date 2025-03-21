@@ -13,7 +13,6 @@ export class AuthLogic {
   }
 
   async createUser(user: CreateUserParams): Promise<AuthResponse> {
-    console.log('ENTERED 2');
     const userAlreadyExists = await this.authRepository.findByEmail(user.email);
 
     if (userAlreadyExists) {
