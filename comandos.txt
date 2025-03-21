@@ -1,0 +1,123 @@
+npm init 
+npm install @types/node tsx typescript zod 
+npm install fastify  (or express)
+npm install typeorm pg reflect-metadata
+npm install zod-to-json-schema
+yarn typeorm init
+npm start 
+yarn typeorm migration:create src/database/typeorm/migrations/createUsersTable
+
+
+ColumnTypeUndefinedError: Column type for User#name is not defined and cannot be guessed. Make sure you have turned on an
+ "emitDecoratorMetadata": true option in tsconfig.json. Also make sure you have imported "reflect-metadata" on top of the
+  main entry file in your application (before any entity imported).If you are using JavaScript instead of TypeScript you must explicitly provide a column type.
+
+
+
+--- after creating the migrations, run:
+
+yarn typeorm migration:run -- -d src/database/typeorm/data-source.ts 
+
+(comando npm run migration:run, nosso script.)
+
+
+
+yarn typeorm migration:create src/database/typeorm/migrations/createListsTable
+
+
+
+
+
+
+
+geralmente adicionaríamos a chave estrangeira mais tarde, em 1 migration própria (independente).
+
+
+
+    await queryRunner.createForeignKey(
+      'lists',
+      new TableForeignKey({
+        name: 'FK_user_id',
+        columnNames: ['user_id'],
+        referencedColumnNames: ['id'],
+        referencedTableName: 'users',
+        // onDelete: 'CASCADE',
+        // onUpdate: 'CASCADE',
+      })
+    );
+
+
+yarn typeorm migration:create src/database/typeorm/migrations/createTasksTable
+
+
+
+
+npm install dotenv 
+
+
+
+npm install bcrypt
+
+
+
+
+npm install jsonwebtoken
+
+
+
+
+npm install zod-to-json-schema 
+
+(usado para integração DO ZOD com o FASTIFY )
+
+
+
+
+
+
+
+
+
+
+
+
+
+REPOSITORY - LOGIC - CONTROLLER.
+
+
+
+
+
+
+
+
+CAMADA DE REPOSITORY -_> RESPONSÁVEL PELA COMUNICACAO COM O BANCO DE DADOS...
+
+
+OPERAÇÕES BÁSICAS (update, insert, get, regra de negócio)... ficará nos repositories...
+
+
+
+maior decoupling.
+
+
+
+
+ajuda quanddo queremos fazer uma troca de orm, etc.
+
+
+
+
+
+
+
+
+
+CAMADA DE CONTROLLER ---> ACTIONS,
+
+
+VAI LIDAR COM AS REQUISIÇÕES... É ONDE RECEBEREMOS 
+OS PARÂMETROS,
+
+E ONDE ENVIAREMOS AS RESPOSTAS...
+
