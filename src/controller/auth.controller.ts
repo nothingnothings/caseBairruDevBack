@@ -12,10 +12,7 @@ export class AuthController {
 
   // o fastify sempre nos fornece 'request' e 'reply', desses types aí, nos controllers.
   createUser = async (request: FastifyRequest, reply: FastifyReply) => {
-    console.log('ENTERED');
     const userData = request.body as CreateUserParams;
-
-    console.log(this.authLogic, 'THE AUTHLOGIC');
 
     const user = await this.authLogic.createUser(userData);
 

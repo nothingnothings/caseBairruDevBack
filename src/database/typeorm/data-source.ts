@@ -1,15 +1,16 @@
+import path = require('path');
 import 'reflect-metadata';
 import { DataSource } from 'typeorm';
-// import { User } from './entity/User';
-import path = require('path');
+
+console.log(process.env.DB_HOST, 'THE_DB_HOST');
 
 export const AppDataSource = new DataSource({
-  type: 'postgres',
-  host: 'localhost',
-  port: 5432,
-  username: 'todo_dev_db',
-  password: 'todo_dev_db',
-  database: 'todo_dev_db',
+  type: process.env.DB_TYPE as any,
+  host: process.env.DB_HOST,
+  port: process.env.DB_PORT as any,
+  username: process.env.DB_USERNAME,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_DATABASE,
   synchronize: true,
   logging: false,
   // todas as entidades do folder entity serão adicionadas.

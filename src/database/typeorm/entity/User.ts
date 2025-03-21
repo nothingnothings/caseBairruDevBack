@@ -5,7 +5,6 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { List } from './List';
 
 @Entity('users')
 export class User {
@@ -23,7 +22,4 @@ export class User {
 
   @CreateDateColumn()
   createdAt: Date;
-
-  @OneToMany(() => List, (list) => list.user)
-  lists: List[];
 }

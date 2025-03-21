@@ -4,9 +4,9 @@ services:
     image: postgres:15.1
     restart: always
     environment:
-      POSTGRES_USER: todo_dev_db
-      POSTGRES_PASSWORD: todo_dev_db
-      POSTGRES_DB: todo_dev_db
+      POSTGRES_USER: dev_db
+      POSTGRES_PASSWORD: dev_db
+      POSTGRES_DB: dev_db
     ports:
       - "5432:5432"
     volumes:
