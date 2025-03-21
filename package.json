@@ -5,7 +5,6 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "tsx watch src/server.ts",
-    "dev": "tsx watch src/server.ts",
     "typeorm": "typeorm-ts-node-commonjs",
     "migration:run": "yarn typeorm migration:run -- -d src/database/typeorm/data-source.ts",
     "migration:revert": "yarn typeorm migration:revert -- -d src/database/typeorm/data-source.ts"
