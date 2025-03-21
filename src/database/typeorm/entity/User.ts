@@ -1,8 +1,8 @@
 import {
   Column,
   CreateDateColumn,
+  DeleteDateColumn,
   Entity,
-  OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
@@ -22,4 +22,7 @@ export class User {
 
   @CreateDateColumn()
   createdAt: Date;
+
+  @DeleteDateColumn() // Use @DeleteDateColumn here
+  deletedAt: Date;
 }

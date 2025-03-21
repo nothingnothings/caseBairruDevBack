@@ -31,13 +31,25 @@ export class AuthTypeOrmRepository implements AuthRepository {
     }
   }
 
-  async deleteUser(userId: number): Promise<User> {
+  async deleteUser(userId: number): Promise<{
+    message: string;
+    userId: number;
+  }> {
     try {
       const user = await this.userRepository.findOne({ where: { id: userId } });
-      await this.userRepository.softDelete(user);
-      return user;
+
+      if (!user) {
+        throw new Error('User not found');
+      }
+
+      await this.userRepository.softDelete({ id: userId });
+
+      return {
+        message: 'User soft deleted successfully',
+        userId,
+      };
     } catch (error) {
-      throw new Error('Error deleting user');
+      throw new Error('Error deleting user:' + error);
     }
   }
 }

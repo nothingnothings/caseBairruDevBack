@@ -34,6 +34,8 @@ export class AuthController {
 
     const userId = userData.userId;
 
+    console.log(userId);
+
     const user = await this.authLogic.deleteUser(userId);
 
     reply.send(user);

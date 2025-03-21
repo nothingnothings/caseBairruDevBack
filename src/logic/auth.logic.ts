@@ -86,11 +86,11 @@ export class AuthLogic {
     };
   }
 
-  async deleteUser(userId: number): Promise<{ user: User }> {
+  async deleteUser(
+    userId: number
+  ): Promise<{ message: string; userId: number }> {
     const user = await this.authRepository.deleteUser(userId);
 
-    return {
-      user,
-    };
+    return user;
   }
 }
