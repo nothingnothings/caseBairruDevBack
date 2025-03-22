@@ -2,6 +2,7 @@ import { FastifyInstance } from 'fastify';
 import { AuthController } from '../controller/auth.controller';
 import {
   AlterNameSchema,
+  GetNameSchema,
   LoginSchema,
   RegisterSchema,
 } from './schemas/auth.schema';
@@ -31,6 +32,14 @@ export const configure = (fastify: FastifyInstance) => {
     url: '/auth/delete',
     method: 'DELETE',
     handler: authController.deleteUser,
+  });
+
+  fastify.route({
+    preHandler: checkAuthenticationMiddleware.execute,
+    url: '/auth/user/:userId',
+    method: 'GET',
+    handler: authController.getName,
+    schema: GetNameSchema,
   });
 
   fastify.route({

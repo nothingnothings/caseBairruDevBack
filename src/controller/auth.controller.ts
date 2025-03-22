@@ -4,6 +4,7 @@ import { CreateUserParams } from '../repositories/interfaces/AuthRepository.inte
 import { AuthLoginRequest } from '../interfaces/authLoginRequest';
 import { AuthDeleteRequest } from '../interfaces/authDeleteRequest';
 import { AuthAlterNameRequest } from '../interfaces/authAlterNameRequest';
+import { AuthGetNameRequest } from '../interfaces/authGetNameRequest';
 
 export class AuthController {
   private authLogic: AuthLogic;
@@ -39,6 +40,19 @@ export class AuthController {
     reply.send(user);
   };
 
+  getName = async (request: FastifyRequest, reply: FastifyReply) => {
+    const userData = request.params as AuthGetNameRequest;
+
+    const userId = userData.userId;
+
+    const user = await this.authLogic.getUser(userId);
+
+    // We delete the user's password, for increased security.
+    delete user.password;
+
+    reply.send(user);
+  };
+
   alterName = async (request: FastifyRequest, reply: FastifyReply) => {
     const userData = request.body as AuthAlterNameRequest;
 
@@ -51,7 +65,6 @@ export class AuthController {
   };
 
   validate = async (request: FastifyRequest, reply: FastifyReply) => {
-    console.log("ENTERED");
     const session = request.headers.authorization.split(' ')[1];
     const isValid = await this.authLogic.validate(session);
 

@@ -33,6 +33,16 @@ export class AuthTypeOrmRepository implements AuthRepository {
     }
   }
 
+  async getUser(userId: number): Promise<User> {
+    try {
+      const user = await this.userRepository.findOne({ where: { id: userId } });
+
+      return user;
+    } catch (error) {
+      throw new Error('Error finding user:' + error);
+    }
+  }
+
   async alterName(userId: number, newName: string): Promise<User> {
     try {
       const user = await this.userRepository.findOne({ where: { id: userId } });

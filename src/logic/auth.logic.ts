@@ -86,6 +86,12 @@ export class AuthLogic {
     };
   }
 
+  async getUser(userId: number): Promise<User> {
+    const user = await this.authRepository.getUser(userId);
+
+    return user;
+  }
+
   async alterName(userId: number, newName: string): Promise<User> {
     const user = await this.authRepository.alterName(userId, newName);
 

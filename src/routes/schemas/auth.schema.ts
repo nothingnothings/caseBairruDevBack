@@ -37,6 +37,14 @@ export const LoginSchema: FastifySchema = {
   ),
 };
 
+export const GetNameSchema: FastifySchema = {
+  params: zodToJsonSchema(
+    z.object({
+      userId: z.number(),
+    })
+  ),
+};
+
 export const AlterNameSchema: FastifySchema = {
   body: zodToJsonSchema(
     z.object({
