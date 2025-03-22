@@ -100,4 +100,10 @@ export class AuthLogic {
 
     return user;
   }
+
+  async validate(session: string): Promise<boolean> {
+    const isValid = await this.authRepository.validate(session);
+
+    return isValid;
+  }
 }

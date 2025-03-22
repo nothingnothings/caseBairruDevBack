@@ -1,6 +1,13 @@
 import { FastifyInstance } from 'fastify';
 import { AuthController } from '../controller/auth.controller';
-import { AlterNameSchema, LoginSchema, RegisterSchema } from './schemas/auth.schema';
+import {
+  AlterNameSchema,
+  LoginSchema,
+  RegisterSchema,
+} from './schemas/auth.schema';
+import { CheckAuthenticationMiddleware } from '../middlewares/check-authentication';
+
+const checkAuthenticationMiddleware = new CheckAuthenticationMiddleware();
 
 export const configure = (fastify: FastifyInstance) => {
   const authController = new AuthController();
@@ -20,15 +27,24 @@ export const configure = (fastify: FastifyInstance) => {
   });
 
   fastify.route({
+    preHandler: checkAuthenticationMiddleware.execute,
     url: '/auth/delete',
     method: 'DELETE',
     handler: authController.deleteUser,
   });
 
   fastify.route({
+    preHandler: checkAuthenticationMiddleware.execute,
     url: '/auth/alterName',
     method: 'PUT',
     handler: authController.alterName,
     schema: AlterNameSchema,
+  });
+
+  fastify.route({
+    preHandler: checkAuthenticationMiddleware.execute,
+    url: '/auth/validate',
+    method: 'GET',
+    handler: authController.validate,
   });
 };

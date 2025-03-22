@@ -50,4 +50,13 @@ export class AuthController {
 
     reply.send(user);
   };
+
+  validate = async (request: FastifyRequest, reply: FastifyReply) => {
+    const session = request.headers.authorization.split(' ')[1];
+    const isValid = await this.authLogic.validate(session);
+
+    reply.send({
+      isValid,
+    });
+  };
 }
