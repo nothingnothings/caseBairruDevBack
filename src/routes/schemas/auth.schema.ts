@@ -24,7 +24,15 @@ export const LoginSchema: FastifySchema = {
   body: zodToJsonSchema(
     z.object({
       email: z.string().email(),
-      password: z.string(), // don't validate password for login, as to not expose the requirements to the user.
+      password: z
+        .string()
+        .min(10, 'A senha deve conter ao menos 10 caracteres')
+        .regex(/[A-Z]/, 'A senha deve conter ao menos uma letra maiúscula')
+        .regex(/[0-9]/, 'A senha deve conter ao menos um número')
+        .regex(
+          /[^A-Za-z0-9\s]/,
+          'A senha deve conter ao menos um caractere especial (não sendo espaço)'
+        ),
     })
   ),
 };
