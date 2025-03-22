@@ -19,6 +19,7 @@ import * as Routes from './routes';
 
   app.listen(
     {
+      host: '192.168.0.137', // If you wish to test the app on a phone, locally, you need to run 'ipconfig' on your terminal and then put the IPV4 address of the machine running the backend here.
       port: 3001,
     },
     () => {
