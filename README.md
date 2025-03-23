@@ -174,7 +174,6 @@ Optionally, if you want to test the project in mobile devices, locally:
 
 ## Endpoints:
 
-### **Authentication Endpoints**
 | Method  | Endpoint              | Description                                  | Authentication Required |
 |---------|-----------------------|----------------------------------------------|-------------------------|
 | `POST`  | `/auth/register`      | Registers a new user                        | ❌ No                   |
