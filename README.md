@@ -1,7 +1,7 @@
 
 <h1 align="center">Case BairruDev Backend</h1>
 <p align="center">
-  <img src="images/backend-logo.png" alt="Backend-logo" width="120px" height="120px"/>
+  <img src="repo-screenshots/backendGenericLogo.png" alt="Backend-logo" width="120px" height="120px"/>
   <br>
   <i>
   This application is the typescript backend portion of the BairruDev entry test App, built with
