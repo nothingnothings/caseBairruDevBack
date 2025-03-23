@@ -1,4 +1,3 @@
-# Backend Setup Guide
 
 <h1 align="center">Case BairruDev Backend</h1>
 <p align="center">
