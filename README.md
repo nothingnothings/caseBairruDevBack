@@ -200,3 +200,4 @@ Optionally, if you want to test the project in mobile devices, locally:
 
 - **Ensure Docker is installed and running** before attempting to start the database.
 - **Environment variables must be configured correctly** for the application to function properly.
+- **If you wish to test the backend without using the frontend, you can import the included `BairruDev.postman_collection` into Postman**; you only need to fire the "Register" route, copy the `token` property and then include it in the "Authorization" header of the other requests, as a "Bearer <token>" value.
