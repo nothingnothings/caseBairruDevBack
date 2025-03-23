@@ -5,7 +5,7 @@
   <br>
   <i>
   This application is the typescript backend portion of the BairruDev entry test App, built with
-  <br>Node.js (Fastify) and integrated with a containerized PostgreSQL database.
+  <br>Node.js (Fastify), integrated with a containerized PostgreSQL database and a React Native frontend.
   </i>
   <br>
 </p>
