@@ -12,7 +12,7 @@
 
 ## Introduction
 
-This guide provides instructions for setting up and running the backend of the BairruDev entry test case. The typescript app was created with Node.js and the Fastify framework. This backend is meant to be used with the frontend seen in the 'caseBairruDevFront' repository.
+This guide provides instructions for setting up and running the backend of the BairruDev entry test case. The typescript app was created with Node.js and the Fastify framework. This backend is meant to be used with the frontend seen in the [caseBairruDevFront](https://github.com/nothingnothings/caseBairruDevFront) repository.
 
 
 ## Technologies 
@@ -165,6 +165,7 @@ To use this project, follow these steps:
 5. Install Yarn: Run `npm install -g yarn`
 6. Run TypeORM Database Migrations (to create the users table): Run `npm run migration:run`
 7. Spin up the development server: Run `npm start`
+8. Pair this backend API with the [caseBairruDevFront](https://github.com/nothingnothings/caseBairruDevFront) repository.
 
 Optionally, if you want to test the project in mobile devices, locally:
 
