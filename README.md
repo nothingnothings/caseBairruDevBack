@@ -4,7 +4,7 @@
   <img src="images/backend-logo.png" alt="Backend-logo" width="120px" height="120px"/>
   <br>
   <i>
-  This application is the typescript backend portion of the BairruDev App, built with
+  This application is the typescript backend portion of the BairruDev entry test App, built with
   <br>Node.js (Fastify) and integrated with a containerized PostgreSQL database.
   </i>
   <br>
