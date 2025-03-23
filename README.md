@@ -12,7 +12,7 @@
 
 ## Introduction
 
-This guide provides instructions for setting up and running the backend of the BairruDev entry test case. The typescript app was created with Node.js and the Fastify framework.
+This guide provides instructions for setting up and running the backend of the BairruDev entry test case. The typescript app was created with Node.js and the Fastify framework. This backend is meant to be used with the frontend seen in the 'caseBairruDevFront' repository.
 
 
 ## Technologies 
