@@ -17,7 +17,7 @@ export class AuthLogic {
     const userAlreadyExists = await this.authRepository.findByEmail(user.email);
 
     if (userAlreadyExists) {
-      throw new Error('E-mail is already in use');
+      throw new Error('O e-mail inserido já encontra-se em uso.');
     }
 
     const encryptedPassword = await hashSync(user.password, 12);
@@ -54,13 +54,13 @@ export class AuthLogic {
     const user = await this.authRepository.findByEmail(email);
 
     if (!user) {
-      throw new Error('User not found');
+      throw new Error('Usuário não encontrado.');
     }
 
     const isPasswordCorrect = await compare(password, user.password);
 
     if (!isPasswordCorrect) {
-      throw new Error('Password is incorrect');
+      throw new Error('Senha incorreta.');
     }
 
     delete user.password; // WE DELETE THE USER'S PASSWORD IN THE RETURNED OBJECT TO THE USER, SO THAT THE USER'S PASSWORD DOESN'T GET SENT TO THE FRONTEND.
@@ -89,11 +89,19 @@ export class AuthLogic {
   async getUser(userId: number): Promise<User> {
     const user = await this.authRepository.getUser(userId);
 
+    if (!user) {
+      throw new Error('Usuário não encontrado.');
+    }
+
     return user;
   }
 
   async alterName(userId: number, newName: string): Promise<User> {
     const user = await this.authRepository.alterName(userId, newName);
+
+    if (!user) {
+      throw new Error('Usuário não encontrado.');
+    }
 
     return user;
   }
@@ -103,6 +111,10 @@ export class AuthLogic {
     userId: number
   ): Promise<{ message: string; userId: number }> {
     const user = await this.authRepository.deleteUser(userId);
+
+    if (!user) {
+      throw new Error('Usuário não encontrado.');
+    }
 
     return user;
   }
