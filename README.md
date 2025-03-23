@@ -169,9 +169,9 @@ To use this project, follow these steps:
 
 Optionally, if you want to test the project in mobile devices, locally:
 
-8. Get your Device's IP address: Run `ipconfig` (windows), then write down the IPv4 address of your machine
-9. Set device's local IP address as the host of the backend API: go to line 22 of `server.ts` and insert the IP of your machine in "host: XXX.XXX.XXX.XXX"
-10. Restart the app, with `npm start`.
+9. Get your Device's IP address: Run `ipconfig` (windows), then write down the IPv4 address of your machine
+10. Set device's local IP address as the host of the backend API: go to line 22 of `server.ts` and insert the IP of your machine in "host: XXX.XXX.XXX.XXX"
+11. Restart the app, with `npm start`.
 
 ## Endpoints:
 
