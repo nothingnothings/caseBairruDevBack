@@ -180,7 +180,7 @@ Optionally, if you want to test the project in mobile devices, locally:
 | `POST`  | `/auth/register`      | Registers a new user                        | ❌ No                   |
 | `POST`  | `/auth/login`         | Authenticates user and returns a JWT        | ❌ No                   |
 | `DELETE`| `/auth/delete`        | Deletes the authenticated user              | ✅ Yes                  |
-| `GET`   | `/auth/user/:userId`  | Retrieves the name of a specific user       | ✅ Yes                  |
+| `GET`   | `/auth/user/:userId`  | Retrieves the data of a specific user       | ✅ Yes                  |
 | `PUT`   | `/auth/alterName`     | Updates the authenticated user's name       | ✅ Yes                  |
 | `GET`   | `/auth/validate`      | Validates if a user is authenticated        | ✅ Yes                  |
 
