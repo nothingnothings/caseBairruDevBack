@@ -1,6 +1,6 @@
-import { User } from '../database/typeorm/entity/User';
+import { UserDTO } from '../dtos/UserDTO';
 
 export interface AuthResponse {
-  user: User; // IDEALMENTE, DEVEMOS CRIAR 1 INTERFACE ESPECÍFICA PARA O USER DENTRO DE NOSSO APP (para deixar mais desacoplado do banco de dados)
+  user: UserDTO; // We use a DTO instead of the entire User entity, for increased security
   token: string;
 }

@@ -13,7 +13,7 @@ export class AuthController {
     this.authLogic = new AuthLogic();
   }
 
-  // o fastify sempre nos fornece 'request' e 'reply', desses types aí, nos controllers.
+  // Fastify always provides us with  'Request' e 'Reply', in our controllers.
   createUser = async (request: FastifyRequest, reply: FastifyReply) => {
     const userData = request.body as CreateUserParams;
 
@@ -40,15 +40,12 @@ export class AuthController {
     reply.send(user);
   };
 
-  getName = async (request: FastifyRequest, reply: FastifyReply) => {
+  getUser = async (request: FastifyRequest, reply: FastifyReply) => {
     const userData = request.params as AuthGetNameRequest;
 
     const userId = userData.userId;
 
     const user = await this.authLogic.getUser(userId);
-
-    // We delete the user's password, for increased security.
-    delete user.password;
 
     reply.send(user);
   };

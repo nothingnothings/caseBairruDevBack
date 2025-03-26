@@ -17,6 +17,7 @@ export class AuthTypeOrmRepository implements AuthRepository {
   async createUser(user: CreateUserParams): Promise<User> {
     try {
       const userCreated = await this.userRepository.save(user);
+
       return userCreated;
     } catch (error) {
       throw new Error('Error creating user: ' + error);
@@ -39,6 +40,7 @@ export class AuthTypeOrmRepository implements AuthRepository {
 
       return user;
     } catch (error) {
+      console.log(error);
       throw new Error('Error finding user:' + error);
     }
   }
@@ -49,8 +51,6 @@ export class AuthTypeOrmRepository implements AuthRepository {
 
       user.name = newName;
       await this.userRepository.save(user);
-
-      delete user.password;
 
       return user;
     } catch (error) {

@@ -2,7 +2,7 @@ import { FastifyInstance } from 'fastify';
 import { AuthController } from '../controller/auth.controller';
 import {
   AlterNameSchema,
-  GetNameSchema,
+  GetUserSchema,
   LoginSchema,
   RegisterSchema,
 } from './schemas/auth.schema';
@@ -38,8 +38,8 @@ export const configure = (fastify: FastifyInstance) => {
     preHandler: checkAuthenticationMiddleware.execute,
     url: '/auth/user/:userId',
     method: 'GET',
-    handler: authController.getName,
-    schema: GetNameSchema,
+    handler: authController.getUser,
+    schema: GetUserSchema,
   });
 
   fastify.route({

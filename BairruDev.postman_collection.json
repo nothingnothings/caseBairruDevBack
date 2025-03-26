@@ -12,7 +12,7 @@
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\n    \"email\": \"testddddd@gmail.com\",\n    \"name\": \"exemplo\",\n    \"password\": \"Exemplo12345678@\"\n}",
+          "raw": "{\n    \"email\": \"test@gmail.com\",\n    \"name\": \"exemplo\",\n    \"password\": \"Exemplo12345678@\"\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -36,7 +36,7 @@
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\n    \"email\": \"test@gmail.com\",\n    \"password\": \"123456788\"\n}",
+          "raw": "{\n    \"email\": \"test@gmail.com\",\n    \"password\": \"Exemplo12345678@\"\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -54,6 +54,31 @@
       "response": []
     },
     {
+      "name": "GetUser",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "<insert_token_value_here>",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3001/auth/user/1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3001",
+          "path": ["auth", "user", "1"]
+        }
+      },
+      "response": []
+    },
+    {
       "name": "DeleteUser",
       "request": {
         "auth": {
@@ -61,7 +86,7 @@
           "bearer": [
             {
               "key": "token",
-              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImVtYWlsIjoiZXhAZXguY29tIiwiaWF0IjoxNzQyNjYzNDg5LCJleHAiOjE3NzQxOTk0ODl9.TmQdXyS1VmQeeC8uPBrBhJYWHiInxxp9yqhBCTFR0nI",
+              "value": "<insert_token_value_here>",
               "type": "string"
             }
           ]
@@ -95,7 +120,7 @@
           "bearer": [
             {
               "key": "token",
-              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImVtYWlsIjoiZXhAZXguY29tIiwiaWF0IjoxNzQyNjYzNDg5LCJleHAiOjE3NzQxOTk0ODl9.TmQdXyS1VmQeeC8uPBrBhJYWHiInxxp9yqhBCTFR0nI",
+              "value": "<insert_token_value_here>",
               "type": "string"
             }
           ]
@@ -129,7 +154,7 @@
           "bearer": [
             {
               "key": "token",
-              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImVtYWlsIjoiZXhAZXguY29tIiwiaWF0IjoxNzQyNjYzNDg5LCJleHAiOjE3NzQxOTk0ODl9.TmQdXyS1VmQeeC8uPBrBhJYWHiInxxp9yqhBCTFR0nI",
+              "value": "<insert_token_value_here>",
               "type": "string"
             }
           ]

@@ -1,10 +1,10 @@
-import { User } from '../database/typeorm/entity/User';
+import { UserDTO } from '../dtos/UserDTO';
 import { AuthLoginRequest } from '../interfaces/authLoginRequest';
 import { AuthResponse } from '../interfaces/authResponse';
 import { AuthTypeOrmRepository } from '../repositories/auth.repository';
 import { CreateUserParams } from '../repositories/interfaces/AuthRepository.interface';
 import { hashSync, compare } from 'bcrypt';
-import { sign } from 'jsonwebtoken';
+import { generateToken } from '../utils/auth';
 
 export class AuthLogic {
   private authRepository: AuthTypeOrmRepository;
@@ -27,25 +27,14 @@ export class AuthLogic {
       password: encryptedPassword,
     });
 
-    // create jsonwebtoken to send in the response of our route.
+    // Create user DTO to send only non-sensitive data (no passwords and api_keys) to the frontend.
+    const userDTO = new UserDTO(userCreated);
 
-    const token = sign(
-      // 1o param --> objeto com dados a serem criptografados no token.
-      {
-        userId: userCreated.id,
-        email: userCreated.email,
-      },
-      process.env.JWT_SECRET, // chave secreta.
-      {
-        expiresIn: '5m',
-        algorithm: 'HS256',
-      }
-    );
-
-    delete userCreated.password; // WE DELETE THE USER'S PASSWORD IN THE RETURNED OBJECT TO THE USER, SO THAT THE USER'S PASSWORD DOESN'T GET SENT TO THE FRONTEND.
+    // Create jsonwebtoken to send in the response of our route.
+    const token = generateToken(userCreated.id, userCreated.email);
 
     return {
-      user: userCreated,
+      user: userDTO,
       token,
     };
   }
@@ -63,60 +52,55 @@ export class AuthLogic {
       throw new Error('Senha incorreta.');
     }
 
-    delete user.password; // WE DELETE THE USER'S PASSWORD IN THE RETURNED OBJECT TO THE USER, SO THAT THE USER'S PASSWORD DOESN'T GET SENT TO THE FRONTEND.
+    // Create user DTO to send only non-sensitive data (no passwords and api_keys) to the frontend.
+    const userDTO = new UserDTO(user);
 
-    // create jsonwebtoken to send in the response of our route.
-
-    const token = sign(
-      // 1o param --> objeto com dados a serem criptografados no token.
-      {
-        userId: user.id,
-        email: user.email,
-      },
-      process.env.JWT_SECRET, // chave secreta.
-      {
-        expiresIn: '5m',
-        algorithm: 'HS256',
-      }
-    );
+    // Create jsonwebtoken to send in the response of our route.
+    const token = generateToken(user.id, user.email);
 
     return {
-      user,
+      user: userDTO,
       token,
     };
   }
 
-  async getUser(userId: number): Promise<User> {
+  async getUser(userId: number): Promise<UserDTO> {
     const user = await this.authRepository.getUser(userId);
 
     if (!user) {
       throw new Error('Usuário não encontrado.');
     }
 
-    return user;
+    // Create user DTO to send only non-sensitive data (no passwords and api_keys) to the frontend.
+    const userDTO = new UserDTO(user);
+
+    return userDTO;
   }
 
-  async alterName(userId: number, newName: string): Promise<User> {
+  async alterName(userId: number, newName: string): Promise<UserDTO> {
     const user = await this.authRepository.alterName(userId, newName);
 
     if (!user) {
       throw new Error('Usuário não encontrado.');
     }
 
-    return user;
+    // Create user DTO to send only non-sensitive data (no passwords and api_keys) to the frontend.
+    const userDTO = new UserDTO(user);
+
+    return userDTO;
   }
 
   // Soft Delete Method
   async deleteUser(
     userId: number
   ): Promise<{ message: string; userId: number }> {
-    const user = await this.authRepository.deleteUser(userId);
+    const data = await this.authRepository.deleteUser(userId);
 
-    if (!user) {
+    if (!data) {
       throw new Error('Usuário não encontrado.');
     }
-
-    return user;
+    // We return an object containing a message and the deleted user's id
+    return data;
   }
 
   async validate(session: string): Promise<boolean> {
